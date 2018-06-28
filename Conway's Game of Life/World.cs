@@ -12,6 +12,10 @@ namespace ConwaysGameOfLife
         public List<int> yChanges;
         public string[,] theGrid;
 
+        private int numUnderPopulation = 2;
+        private int numOverPopulation = 3;
+        private int numReproduction = 3;
+
 
         public int XLength
         {
@@ -153,7 +157,7 @@ namespace ConwaysGameOfLife
             {
 
                 Display.printWorldAsGrid(this);
-                System.Threading.Thread.Sleep(TimeSpan.FromSeconds(Input.inputIterationTime));
+                System.Threading.Thread.Sleep(TimeSpan.FromMilliseconds(Input.inputIterationTime));
 
                 xChanges = new List<int>();
                 yChanges = new List<int>();
@@ -169,7 +173,7 @@ namespace ConwaysGameOfLife
 
                         //Any live cell with fewer than two live neighbours dies, as if caused by under population.
 
-                        if (theGrid[i, j] == Input.inputLiveCell && neighborCount < 2)
+                        if (theGrid[i, j] == Input.inputLiveCell && neighborCount < numUnderPopulation)
                         {
                             //Console.WriteLine("x: " + i + " y: " + j + " has  " + neighborCount + " neighbors and will die");
 
@@ -182,7 +186,7 @@ namespace ConwaysGameOfLife
 
                         //Any live cell with more than three live neighbours dies, as if by overpopulation.
 
-                        if (theGrid[i, j] == Input.inputLiveCell && neighborCount > 3)
+                        if (theGrid[i, j] == Input.inputLiveCell && neighborCount > numOverPopulation)
                         {
                             //Console.WriteLine("x: " + i + " y: " + j + " has  " + neighborCount + " neighbors and will die");
 
@@ -193,7 +197,7 @@ namespace ConwaysGameOfLife
 
                         //Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 
-                        if (theGrid[i, j] == Input.inputDeadCell && neighborCount == 3)
+                        if (theGrid[i, j] == Input.inputDeadCell && neighborCount == numReproduction)
                         {
                             //Console.WriteLine("x: " + i + " y: " + j + " has  " + neighborCount + " and will come back to life");
 

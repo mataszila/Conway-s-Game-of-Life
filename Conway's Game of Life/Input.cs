@@ -41,7 +41,7 @@ namespace ConwaysGameOfLife
             inputLiveCell = "[" + Console.ReadLine() + "]"; 
             Console.WriteLine("Please enter what character you want to use for a dead cell (preferably the same number of characters): ");
             inputDeadCell = "[" + Console.ReadLine() +"]";
-            Console.WriteLine("Please enter time between every iteration: ");
+            Console.WriteLine("Please enter time between every iteration (in milliseconds): ");
             inputIterationTime = askForANumber();
         }
 
